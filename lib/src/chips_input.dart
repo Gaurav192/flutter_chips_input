@@ -134,16 +134,19 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
                   link: this._layerLink,
                   showWhenUnlinked: false,
                   offset: Offset(0.0, size.height + 5.0),
-                  child: Material(
-                    elevation: 4.0,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      padding: EdgeInsets.zero,
-                      itemCount: snapshot.data?.length ?? 0,
-                      itemBuilder: (BuildContext context, int index) {
-                        return widget.suggestionBuilder(
-                            context, this, _suggestions[index]);
-                      },
+                  child: LimitedBox(
+                    maxHeight: 400,
+                    child: Material(
+                      elevation: 4.0,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.zero,
+                        itemCount: snapshot.data?.length ?? 0,
+                        itemBuilder: (BuildContext context, int index) {
+                          return widget.suggestionBuilder(
+                              context, this, _suggestions[index]);
+                        },
+                      ),
                     ),
                   ),
                 ),
